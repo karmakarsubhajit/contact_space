@@ -68,11 +68,18 @@ app.get('/contacts/search/:id',(req,res)=>{
         if(err){
             res.send(err);
         }
-        if(contact)
-        res.send(contact)
+        res.send(contact);
     });
 });
 
+app.delete('/contacts/remove/:id',(req,res)=>{
+    Contact.deleteOne({contactid:req.params.id},(err,deletedObj)=>{
+        if(err){
+            res.send(err);
+        }
+        res.send(deletedObj);
+    });
+});
 
 app.listen(port,function(){
     console.log(`Server running at ${port}`);
