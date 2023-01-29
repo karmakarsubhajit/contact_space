@@ -68,6 +68,7 @@ app.get('/contacts/search/:id',(req,res)=>{
         if(err){
             res.send(err);
         }
+        if(contact)
         res.send(contact)
     });
 });
