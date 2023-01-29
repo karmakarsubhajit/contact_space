@@ -46,7 +46,6 @@ app.get('/defaultcontacts/:id',(req,res)=>{
 });
 
 app.post('/contacts/create',(req,res)=>{
-
   var contact = new Contact();
   console.log(req.body);
   contact.contactid = req.body.contactid;
@@ -72,6 +71,7 @@ app.get('/contacts/search/:id',(req,res)=>{
     });
 });
 
+
 app.delete('/contacts/remove/:id',(req,res)=>{
     Contact.deleteOne({contactid:req.params.id},(err,deletedObj)=>{
         if(err){
@@ -80,6 +80,9 @@ app.delete('/contacts/remove/:id',(req,res)=>{
         res.send(deletedObj);
     });
 });
+
+
+
 
 app.listen(port,function(){
     console.log(`Server running at ${port}`);
