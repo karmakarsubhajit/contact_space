@@ -63,8 +63,13 @@ app.post('/contacts/create',(req,res)=>{
   });
 });
 
-app.post('/update',(req,res)=>{
-
+app.get('/contacts/search/:id',(req,res)=>{
+    Contact.findOne({contactid:req.params.id},(err,contact)=>{
+        if(err){
+            res.send(err);
+        }
+        res.send(contact)
+    });
 });
 
 
