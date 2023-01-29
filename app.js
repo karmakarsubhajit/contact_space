@@ -1,11 +1,13 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
+const app = express();
 const port = 3000;
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
 const people_contacts = require('./data/contacts');
 const people_contacts_id = require('./data/contacts_id');
 const Contact = require('./models/contactschema');
-app.use(bodyParser.urlencoded({extended:true}));
 
 
 const mongoose = require('mongoose');
