@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const port = 3000;
 const people_contacts = require('./data/contacts');
 const people_contacts_id = require('./data/contacts_id');
 const Contact = require('./models/contactschema');
+app.use(bodyParser.urlencoded({extended:true}));
+
 
 const mongoose = require('mongoose');
 
@@ -26,11 +29,11 @@ app.get('/',(req,res)=>{
     res.send('Welcome to our page!!! You can store your contacts!');
 });
 
-app.get('/defaultContacts',(req,res)=>{
+app.get('/defaultcontacts',(req,res)=>{
     res.send(people_contacts);
 });
 
-app.get('/defaultContacts/:id',(req,res)=>{
+app.get('/defaultcontacts/:id',(req,res)=>{
     console.log(req.params.id);
     var obj = {} 
     for (let i = 0; i < people_contacts_id.length; i++) {
@@ -41,18 +44,20 @@ app.get('/defaultContacts/:id',(req,res)=>{
 });
 
 app.post('/contacts',(req,res)=>{
-  const contact = new Contact({
-    id:req.params.id,
-    name: req.params.name,
-    phone: req.params.phone,
-    country: req.params.country,
-    gender:req.params.gender
-  });
+
+  var contact = new Contact();
+  console.log(req.body);
+  contact.contactid = req.body.contactid;
+  contact.name = req.body.name;
+  contact.phone = req.body.phone;
+  contact.country = req.body.country;
+  contact.gender= req.body.gender;
+
   contact.save((err,contact)=>{
     if(err){
         res.send(err);
     }
-    res.send(json);
+    res.send(contact);
   });
 });
 
