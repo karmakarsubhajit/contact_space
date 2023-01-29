@@ -82,6 +82,9 @@ app.delete('/contacts/remove/:id',(req,res)=>{
 });
 
 
+app.put('/contacts/edit/',(req,res)=>{
+    Contact.updateOne({contactid:req.body.contactid,})
+});
 
 
 app.listen(port,function(){
