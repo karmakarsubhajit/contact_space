@@ -45,7 +45,7 @@ app.get('/defaultcontacts/:id',(req,res)=>{
     res.send(obj);
 });
 
-app.post('/contacts',(req,res)=>{
+app.post('/contacts/create',(req,res)=>{
 
   var contact = new Contact();
   console.log(req.body);
@@ -61,6 +61,10 @@ app.post('/contacts',(req,res)=>{
     }
     res.send(contact);
   });
+});
+
+app.post('/update',(req,res)=>{
+
 });
 
 
