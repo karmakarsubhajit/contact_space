@@ -26,11 +26,11 @@ app.get('/',(req,res)=>{
     res.send('Welcome to our page!!! You can store your contacts!');
 });
 
-app.get('/contacts',(req,res)=>{
+app.get('/defaultContacts',(req,res)=>{
     res.send(people_contacts);
 });
 
-app.get('/contacts/:id',(req,res)=>{
+app.get('/defaultContacts/:id',(req,res)=>{
     console.log(req.params.id);
     var obj = {} 
     for (let i = 0; i < people_contacts_id.length; i++) {
